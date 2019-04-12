@@ -24,23 +24,57 @@ public class LoginService {
     	String quary = "select user_id, password from fook_user";
     	
     	logc.login.idtextField.getText();
-    	System.out.println(logc.login.pwtextfd.getPassword());
+    	logc.login.pwtextfd.getPassword();
     	
         try {
         	conn = DBConnection.getConnection();
 			pstm = conn.prepareStatement(quary);
 			rs = pstm.executeQuery();
 
-			System.out.println("user_id \t password");
-			System.out.println("=========================");
+//			System.out.println("user_id \t password");
+//			System.out.println("=========================");
+			
+			if ((logc.login.idtextField.getText().isEmpty()) || (logc.login.pwtextfd.getPassword().length == 0)) {
+				javax.swing.JOptionPane.showMessageDialog(logc.login, "아이디 또는 비밀번호를 입력해 주세요.");
+
+			}
+			
+			String str = new String(logc.login.pwtextfd.getPassword());
+			String user_id;
+			String password;
 			
 			while(rs.next()){
-				String user_id = rs.getString("user_id");
-				String password = rs.getString("password");
+				user_id = rs.getString("user_id");
+				password = rs.getString("password");
+//				Integer.parseInt(password);
 				
-				String result = user_id+" "+password;
-				System.out.println(result);
+//				System.out.println(logc.login.pwtextfd.getPassword());
+//				System.out.println("데이터베이스 password : " + password + " 내가 친 password  : " + str );
+//				System.out.println("비번 : " + str);
+//				System.out.println(logc.login.idtextField.getText());
+//				String result = user_id+" "+password;
+//				System.out.println(result);
+				
+				if (logc.login.idtextField.getText().equals(user_id) && str.equals(password)) {
+					javax.swing.JOptionPane.showMessageDialog(logc.login, "로그인 성공.");
+				}
+				
+//				if (logc.login.idtextField.getText().equals(user_id)) {
+//					비밀번호가 틀렸습니다.
+//				}
+				
 			}
+			
+//			if (logc.login.idtextField.getText() != user_id || str != password) {
+//				javax.swing.JOptionPane.showMessageDialog(logc.login, "아이디와 비밀번호를 확인해 주세요.");
+//			}else if (logc.login.idtextField.getText().equals(user_id)) {
+//				if (str != password) {
+//					javax.swing.JOptionPane.showMessageDialog(logc.login, "비밀번호가 틀립니다.");
+//				}
+//			}
+			
+			logc.login.idtextField.setText("");
+			logc.login.pwtextfd.setText("");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -53,11 +53,9 @@ public class LoginControl implements ActionListener {
 		} else if (ob == this.login.findpwbtn) {
 			this.findPwMain.setVisible(true);
 		} else if (ob == this.login.loginbtn) {
-			if ((this.login.idtextField.getText().isEmpty()) || (this.login.pwtextfd.getPassword().length == 0)) {
-				javax.swing.JOptionPane.showMessageDialog(this.login, "아이디 또는 비밀번호를 입력해 주세요.");
-
-			}
 			loginService.logJoin();
+			
+			
 			
 //		아이디 찾기
 		} else if (ob == this.findId.nextbtn) {
@@ -73,6 +71,8 @@ public class LoginControl implements ActionListener {
 			this.findIdMain.card.show(this.findIdMain.panMain, "findId");
 			this.findIdMain.findIdCheck.nameL.setName("");
 
+			
+			
 			
 //		비밀번호 찾기
 		} else if (ob == this.findPw.nextbtn) {
@@ -110,6 +110,8 @@ public class LoginControl implements ActionListener {
 			this.findRPw.pwTF.setText("");
 			this.findPwMain.card.show(this.findPwMain.panMain, "findPw");
 
+			
+			
 //		회원가입 페이지
 		} else if (ob == this.loginMain.panJoin.cancelbtn) {
 			this.join.setVisible(false);

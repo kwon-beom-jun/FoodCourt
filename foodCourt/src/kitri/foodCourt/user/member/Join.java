@@ -134,7 +134,11 @@ public class Join extends JPanel
      
      this.comboBox = new JComboBox();
      this.comboBox.setBounds(408, 523, 89, 30);
-     add(this.comboBox);
+     add(comboBox);
+     comboBox.addItem("010");
+     comboBox.addItem("011");
+     comboBox.addItem("017");
+     comboBox.addItem("019");
      
      this.sinupbtn = new JButton("회원가입");
      this.sinupbtn.setFont(new Font("굴림", 0, 14));

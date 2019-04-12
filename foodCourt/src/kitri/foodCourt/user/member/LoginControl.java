@@ -116,6 +116,13 @@ public class LoginControl implements ActionListener {
 		} else if (ob == this.loginMain.panJoin.cancelbtn) {
 			this.join.setVisible(false);
 		} else if (ob == this.loginMain.panJoin.sinupbtn) {
+			
+		} else if (ob == this.loginMain.panJoin.sinupbtn) {
+			
+		} else if (ob == this.loginMain.panJoin.sinupbtn) {
+			
+		} else if (ob == this.loginMain.panJoin.sinupbtn) {
+			
 		}
 	}
 }

@@ -2,6 +2,8 @@ package kitri.foodCourt.user.member;
  
 import java.io.PrintStream;
 import java.sql.*;
+
+import kitri.foodCourt.user.User;
  
 public class LoginService {
     
@@ -21,12 +23,18 @@ public class LoginService {
     
     public void logJoin() {
     	
-    	String quary = "select user_id, password from fook_user";
+    	String quary = "select user_id, password, name, user_point from fook_user";
     	
     	logc.login.idtextField.getText();
     	logc.login.pwtextfd.getPassword();
     	
+    	//유효성 위로
+		if ((logc.login.idtextField.getText().isEmpty()) || (logc.login.pwtextfd.getPassword().length == 0)) {
+			javax.swing.JOptionPane.showMessageDialog(logc.login, "아이디 또는 비밀번호를 입력해 주세요.");
+		}
+    	
         try {
+        	
         	conn = DBConnection.getConnection();
 			pstm = conn.prepareStatement(quary);
 			rs = pstm.executeQuery();
@@ -35,7 +43,7 @@ public class LoginService {
 //			System.out.println("=========================");
 			
 			
-			String str = new String(logc.login.pwtextfd.getPassword());
+			String str = new String(logc.login.pwtextfd.getPassword()); // 비밀번호는 별표로 뜨게 만드는 소스를 써서 새로 생성해서 쓸 수 있음.
 			String user_id;
 			String password;
 			int checking = 0;
@@ -43,6 +51,7 @@ public class LoginService {
 			while(rs.next()){
 				user_id = rs.getString("user_id");
 				password = rs.getString("password");
+				
 //				Integer.parseInt(password);
 				
 //				System.out.println(logc.login.pwtextfd.getPassword());
@@ -55,15 +64,17 @@ public class LoginService {
 				if (logc.login.idtextField.getText().equals(user_id) && str.equals(password)) {
 					javax.swing.JOptionPane.showMessageDialog(logc.login, "로그인 성공.");
 					checking += 1;
+					//성공 
+//					User user = new User(user_id, rs.getString("name"), rs.getInt("user_point"));
+//					user.setPhoneNumberFirst(phoneNumberFirst);
+//					user.setPhoneNumberFirst(phoneNumberFirst);
+					//user.set
+					//System.out.println(user);
 				}
-				
-				
 			}
 			
-			if ((logc.login.idtextField.getText().isEmpty()) || (logc.login.pwtextfd.getPassword().length == 0)) {
-				javax.swing.JOptionPane.showMessageDialog(logc.login, "아이디 또는 비밀번호를 입력해 주세요.");
-
-			}else if (checking == 0) {
+			
+			if (checking == 0) {
 				javax.swing.JOptionPane.showMessageDialog(logc.login, "아이디와 비번이 다릅니다.");
 
 			}
@@ -90,8 +101,66 @@ public class LoginService {
         
     }
     
-    public void showJoinpage() {
-      System.out.println("test");
+    
+//    ------------------------------------------------------------------------------------------------
+    
+    
+    
+    public void doublechek() {
+    	
+        String quary = "select user_id from fook_user";
+        
+        if (logc.join.idTextFD.getText().isEmpty()) {
+        	javax.swing.JOptionPane.showMessageDialog(logc.join, "아이디를 입력 바랍니다.");
+		}
+  	
+	    
+        try {
+      		conn = DBConnection.getConnection();
+			pstm = conn.prepareStatement(quary);
+			rs = pstm.executeQuery();
+
+			String user_id = logc.join.idTextFD.getText();
+			String DBuser_id;
+			
+			while(rs.next()){
+				
+				DBuser_id = rs.getString("user_id");
+				
+				if (user_id.equals(DBuser_id)) {
+					javax.swing.JOptionPane.showMessageDialog(logc.join, "중복된 아이디가 있습니다.");
+					logc.join.idTextFD.setText("");
+				}else {
+					javax.swing.JOptionPane.showMessageDialog(logc.join, "사용 가능한 아이디 입니다.");
+				}
+			}			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("쿼리문 오류");
+		} finally{
+          // DB 연결을 종료한다.
+          try{
+              if ( rs != null ){rs.close();}   
+              if ( pstm != null ){pstm.close();}   
+              if ( conn != null ){conn.close(); }
+          }catch(Exception e){
+              throw new RuntimeException(e.getMessage());
+          }
+          
+		}
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
     
 }

@@ -4,8 +4,7 @@ import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class LoginControl implements ActionListener {
 	
@@ -91,12 +90,10 @@ public class LoginControl implements ActionListener {
 //		-------------------------------------------------------------------------------------
 		} else if (ob == this.findPwCheck.nextbtn) {
 			this.findPwCheck.answerTF.setText("");
-			this.findPwCheck.questionTF.setText("");
 			this.findPwMain.card.show(this.findPwMain.panMain, "findRPw");
 		} else if (ob == this.findPwCheck.cancelbtn) {
 			this.findPwMain.setVisible(false);
 			this.findPwCheck.answerTF.setText("");
-			this.findPwCheck.questionTF.setText("");
 			this.findPwMain.card.show(this.findPwMain.panMain, "findPw");
 //		-------------------------------------------------------------------------------------
 		} else if (ob == this.findRPw.confirmbtn) {
@@ -110,13 +107,23 @@ public class LoginControl implements ActionListener {
 			this.findRPw.pwTF.setText("");
 			this.findPwMain.card.show(this.findPwMain.panMain, "findPw");
 
+//			public JTextField idTextFD;
+//			public JTextField pwTextFD;
+//			public JTextField pwCheckFD;
+//			public JTextField nameFD;
+//			public JTextField phLastFD;
+//			public JTextField phMiddleFD;
+//			public JButton cancelbtn;
+//			public JButton sinupbtn;
+//			public JButton doublechekbtn;
+//			public JComboBox comboBox;
 			
 			
 //		회원가입 페이지
 		} else if (ob == this.loginMain.panJoin.cancelbtn) {
 			this.join.setVisible(false);
-		} else if (ob == this.loginMain.panJoin.sinupbtn) {
-			
+		} else if (ob == this.loginMain.panJoin.doublechekbtn) {
+			loginService.doublechek();
 		} else if (ob == this.loginMain.panJoin.sinupbtn) {
 			
 		} else if (ob == this.loginMain.panJoin.sinupbtn) {

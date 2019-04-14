@@ -3,10 +3,12 @@ package kitri.foodCourt.user.member;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.*;
 
-public class LoginControl implements ActionListener {
+public class LoginControl implements ActionListener, KeyListener {
 	
 	public LoginService loginService;
 	public LoginMain loginMain;
@@ -58,17 +60,19 @@ public class LoginControl implements ActionListener {
 			
 //		아이디 찾기
 		} else if (ob == this.findId.nextbtn) {
-			this.findIdMain.card.show(this.findIdMain.panMain, "findIdCheck");
+			loginService.findid();
+			
+			
 		} else if (ob == this.findId.cancelbtn) {
-			this.findIdMain.setVisible(false);
-			this.findIdMain.findId.middleTF.setName("");
-			this.findIdMain.findId.lastTF.setName("");
-			this.findIdMain.findId.nameTF.setName("");
+			findIdMain.setVisible(false);
+			findId.middleTF.setText("");
+			findId.lastTF.setText("");
+			findId.nameTF.setText("");
 //		-------------------------------------------------------------------------------------
-		} else if (ob == this.findIdCheck.Confirm) {
-			this.findIdMain.setVisible(false);
-			this.findIdMain.card.show(this.findIdMain.panMain, "findId");
-			this.findIdMain.findIdCheck.nameL.setName("");
+		} else if (ob == findIdCheck.Confirm) {
+			findIdMain.setVisible(false);
+			findIdMain.card.show(findIdMain.panMain, "findId");
+//			findIdCheck.nameL.setText("");
 
 			
 			
@@ -121,15 +125,52 @@ public class LoginControl implements ActionListener {
 			
 //		회원가입 페이지
 		} else if (ob == this.loginMain.panJoin.cancelbtn) {
-			this.join.setVisible(false);
+			join.setVisible(false);
+			join.idTextFD.setText("");
+			join.pwTextFD.setText("");
+			join.pwCheckFD.setText("");
+			join.nameFD.setText("");
+			join.phLastFD.setText("");
+			join.phMiddleFD.setText("");
 		} else if (ob == this.loginMain.panJoin.doublechekbtn) {
-			loginService.doublechek();
-		} else if (ob == this.loginMain.panJoin.sinupbtn) {
-			
-		} else if (ob == this.loginMain.panJoin.sinupbtn) {
-			
-		} else if (ob == this.loginMain.panJoin.sinupbtn) {
-			
+			loginService.doubleCheck();
+		} 
+//		else if (ob == this.loginMain.panJoin.comboBox) {
+//			
+//		}
+		else if (ob == loginMain.panJoin.signupbtn) {
+			loginService.signUp();
 		}
 	}
+
+	
+	@Override
+	public void keyReleased(KeyEvent e) { 		
+		
+		Object ob = e.getSource();
+	
+//		회원가입 페이지 비밀번호 일치 확인 필드
+		if (ob == join.pwCheckFD) {
+			loginService.pwCompare();
+		}else if (ob == join.pwTextFD) {
+			loginService.pwCompare();
+		}
+		
+	}
+	
+	
+
+	
+	
+	
+	
+	
+	@Override
+	public void keyTyped(KeyEvent e) {}
+	@Override
+	public void keyPressed(KeyEvent e) {}
+	
+	
+
+	
 }

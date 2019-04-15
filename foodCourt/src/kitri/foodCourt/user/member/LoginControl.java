@@ -79,8 +79,7 @@ public class LoginControl implements ActionListener, KeyListener {
 			
 //		비밀번호 찾기
 		} else if (ob == this.findPw.nextbtn) {
-			this.findPwMain.card.show(this.findPwMain.panMain, "findPwCheck");
-			this.findPw.idTF.setText("");
+			loginService.findPw();
 		} else if (ob == this.findPw.cancelbtn) {
 			this.findPwMain.setVisible(false);
 			this.findPwMain.card.show(this.findPwMain.panMain, "findPw");
@@ -93,23 +92,25 @@ public class LoginControl implements ActionListener, KeyListener {
 			this.findIdMain.setVisible(true);
 //		-------------------------------------------------------------------------------------
 		} else if (ob == this.findPwCheck.nextbtn) {
-			this.findPwCheck.answerTF.setText("");
-			this.findPwMain.card.show(this.findPwMain.panMain, "findRPw");
+			loginService.findPwCheck();
 		} else if (ob == this.findPwCheck.cancelbtn) {
+			loginService.reSetting();
 			this.findPwMain.setVisible(false);
 			this.findPwCheck.answerTF.setText("");
 			this.findPwMain.card.show(this.findPwMain.panMain, "findPw");
 //		-------------------------------------------------------------------------------------
 		} else if (ob == this.findRPw.confirmbtn) {
-			this.findPwMain.setVisible(false);
+			loginService.findRPw();
+
 			this.findRPw.againPwTF.setText("");
 			this.findRPw.pwTF.setText("");
-			this.findPwMain.card.show(this.findPwMain.panMain, "findPw");
 		} else if (ob == this.findRPw.cancelbtn) {
+			loginService.reSetting();
 			this.findPwMain.setVisible(false);
 			this.findRPw.againPwTF.setText("");
 			this.findRPw.pwTF.setText("");
 			this.findPwMain.card.show(this.findPwMain.panMain, "findPw");
+			
 
 //			public JTextField idTextFD;
 //			public JTextField pwTextFD;
@@ -141,6 +142,8 @@ public class LoginControl implements ActionListener, KeyListener {
 		else if (ob == loginMain.panJoin.signupbtn) {
 			loginService.signUp();
 		}
+		else if (ob == findPw.nextbtn) {
+		}
 	}
 
 	
@@ -154,6 +157,13 @@ public class LoginControl implements ActionListener, KeyListener {
 			loginService.pwCompare();
 		}else if (ob == join.pwTextFD) {
 			loginService.pwCompare();
+		}
+		
+//		비밀번호 재설정 페이지
+		else if (ob == findRPw.againPwTF) {
+			loginService.Rpwcompare();
+		}else if (ob == findRPw.pwTF) {
+			loginService.Rpwcompare();
 		}
 		
 	}

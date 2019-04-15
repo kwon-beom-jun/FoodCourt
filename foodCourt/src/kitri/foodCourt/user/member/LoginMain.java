@@ -68,15 +68,18 @@ public class LoginMain extends JFrame {
 		this.findIdMain.findIdCheck.Confirm.addActionListener(this.loginControl);
 		
 //		비밀번호 찾기 페이지
-		this.findPwMain.findPw.nextbtn.addActionListener(this.loginControl);
-		this.findPwMain.findPw.cancelbtn.addActionListener(this.loginControl);
-		this.findPwMain.findPw.idfindbtn.addActionListener(this.loginControl);
+		findPwMain.findPw.nextbtn.addActionListener(this.loginControl);
+		findPwMain.findPw.cancelbtn.addActionListener(this.loginControl);
+		findPwMain.findPw.idfindbtn.addActionListener(this.loginControl);
+		
 //		-----------------------------------------------------------------------------------------
 		this.findPwMain.findPwCheck.nextbtn.addActionListener(this.loginControl);
 		this.findPwMain.findPwCheck.cancelbtn.addActionListener(this.loginControl);
 //		-----------------------------------------------------------------------------------------
-		this.findPwMain.findRPw.cancelbtn.addActionListener(this.loginControl);
-		this.findPwMain.findRPw.confirmbtn.addActionListener(this.loginControl);
+		findPwMain.findRPw.cancelbtn.addActionListener(this.loginControl);
+		findPwMain.findRPw.confirmbtn.addActionListener(this.loginControl);
+		findPwMain.findRPw.againPwTF.addKeyListener(loginControl);
+		findPwMain.findRPw.pwTF.addKeyListener(loginControl);
 		
 //		회원가입 페이지
 		panJoin.cancelbtn.addActionListener(loginControl);
